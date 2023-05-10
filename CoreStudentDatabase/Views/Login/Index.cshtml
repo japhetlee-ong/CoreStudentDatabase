@@ -1,0 +1,46 @@
+﻿@model LoginModel
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button class="btn-close" data-dismiss="alert" type="button">
+                <span aria-hidden="true">x</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong>Error! </strong>
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    <div class=" d-flex align-items-center justify-content-center vh-100" style="flex-direction:column">
+        @using (Html.BeginForm("Login","Login"))
+        {
+            <div>
+                <h3>Password Repository System</h3>
+                <div style="text-align:center">
+                    @Html.Label("Username")
+                    @Html.TextBoxFor(Model => Model.Username, new { @class = "form-control", style = "margin:auto;", required = "required" })
+                </div>
+                <div style="text-align:center">
+                    @Html.Label("Password")
+                    @Html.TextBoxFor(Model => Model.Password, new { @class = "form-control", style = "margin:auto;", required = "required" })
+                </div>
+                <div style="text-align:center">
+                    <button class="btn btn-warning btn-block" style="margin-top:10px; width:50%">Login</button>
+                </div>
+            </div>
+        }
+        <button class="btn btn-primary btn-block" style="margin-top:10px; width:15%" onclick="@("window.location.href='" + @Url.Action("index", "Register") + "'");">Register Now</button>
+    </div>
+</body>
+</html>
